@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+   name: scorecard
+   namespace: default
+spec:
+   replicas: 1
+   selector:
+      matchLabels:
+         run: scorecard
+   template:
+      metadata:
+         labels:
+            run: scorecard
+      spec:
+         containers:
+            - name: scorecard-deployment-cnt
+              image: scorecard-img
+              imagePullPolicy: IfNotPresent
+              ports:
+                 - containerPort: 8501
+              resources:
+                limits:
+                  cpu: 100m
+                requests:
+                  cpu: 10m

@@ -1,0 +1,15 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: scorecard
+  labels:
+    run: scorecard
+spec:
+  ports:
+    - name: http
+      protocol: TCP
+      port: 80
+      targetPort: 8501
+  selector:
+    run: scorecard
+  type: LoadBalancer
